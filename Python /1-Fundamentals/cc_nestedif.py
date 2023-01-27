@@ -1,5 +1,5 @@
 priceIsRight = 15
-# testing conditions to get the right price
+# testing conditions to get the right price.
 if priceIsRight < 5:
     print("Price is too low!")
 elif priceIsRight >= 5 and priceIsRight <= 9:
