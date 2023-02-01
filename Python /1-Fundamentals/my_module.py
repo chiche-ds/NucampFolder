@@ -3,3 +3,9 @@ def greet(name):
 
 
 flavor = "mint chip"
+
+person1 = {
+    "name": "John",
+    "age":36,
+    "country":"Norway"
+}
