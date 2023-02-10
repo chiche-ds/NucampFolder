@@ -1,19 +1,19 @@
 
 def show_balance(balance):
-    return( float(balance))
+    return (float(balance))
 
 
 def deposit(balance):
     amount = float(input("Enter amount to deposit:"))
-    return (balance + amount)
+    return (float(balance) + amount)
 
 
 def withdraw(balance):
-    amount = float(input("Enter amount to withdraw:"))
     if balance <= 0:
         print("where are you going to get that kind of money ")
     else:
-        return (balance - amount)
+        amount = float(input("Enter amount to withdraw:"))
+        return (float(balance) - amount)
 
 
 def logout(name):
