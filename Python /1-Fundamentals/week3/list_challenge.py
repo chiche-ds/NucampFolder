@@ -11,16 +11,10 @@ while diamonds:
     if prompt == "Q" or prompt == "q":
        break
     else:
-        random_index = (random.randint(0,len(diamonds)- 1))
-        #a = diamonds.pop(random_index)
-        hand.append(diamonds.pop(random_index))
+        hand.append(diamonds.remove(random.choice(diamonds)))
         print("Your Hand ", hand)
         print("Remaining Cards",diamonds)
 
   
 if not diamonds:
     print("There are no more cards to pick.")
-
-
-
-
