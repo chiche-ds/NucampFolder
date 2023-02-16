@@ -6,6 +6,6 @@ print(my_tuple[-1] + my_tuple[-2])
 
 #my_tuple[3] = 1
 
-my_tuple = (5,4,3,2,1)
+my_tuple = ("test")
 print(my_tuple)
 
