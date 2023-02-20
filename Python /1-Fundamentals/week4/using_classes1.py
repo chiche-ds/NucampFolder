@@ -17,3 +17,9 @@ player2  = Player("Irene", 1300)
 
 print("P1:", player1.name, " -- HP: ",player1.hp, " -- SCORE: ", player1.score)
 print("P1:", player2.name, " -- HP: ",player2.hp, " -- SCORE: ", player2.score)
+
+player1.hp += 500
+player1.score += 10
+
+print("P1:", player1.name, " -- HP: ",player1.hp, " -- SCORE: ", player1.score)
+print("P1:", player2.name, " -- HP: ",player2.hp, " -- SCORE: ", player2.score)
