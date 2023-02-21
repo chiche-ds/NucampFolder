@@ -21,3 +21,9 @@ class BankUser(User):
 
 
 bankuser1 = BankUser("Jane","jane@nucamp.co","bestpassword")   
+
+class SuperClass:
+    pass
+
+class SubClass(SuperClass):
+    pass
