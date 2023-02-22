@@ -1,25 +1,12 @@
-""" 
- """
+class Node:
+    def __init__(self, value):
+        self.value = value
+        self.next = None 
 
+head = Node("1st Node ")
+head.next = Node("2nd Node ")
+head.next.next = Node("3rd Node")
 
-class Player:
-    def __init__(self, name, hp):
-        self.name = name
-        self.hp = hp 
-        self.score = 0
-
-
-
-
-player1 = Player("Aaron", 1200)
-player2  = Player("Irene", 1300)
-
-
-print("P1:", player1.name, " -- HP: ",player1.hp, " -- SCORE: ", player1.score)
-print("P1:", player2.name, " -- HP: ",player2.hp, " -- SCORE: ", player2.score)
-
-player1.hp += 500
-player1.score += 10
-
-print("P1:", player1.name, " -- HP: ",player1.hp, " -- SCORE: ", player1.score)
-print("P1:", player2.name, " -- HP: ",player2.hp, " -- SCORE: ", player2.score)
+print(head.value)
+print(head.next.value)
+print(head.next.next.value)
