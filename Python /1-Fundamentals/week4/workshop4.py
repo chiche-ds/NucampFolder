@@ -26,9 +26,6 @@ class BankUser(User):
         self.balance -= amount
 
     def transfer_money(self , user , amount ):
-        if amount < 0 or type(amount) == str:
-            print("enter a valid amount")
-            return False
         print("You are transfering ", amount ,"to ", user.name )
         print("authentication  is required ")
         pincode = input("Enter your PIN:")
@@ -43,8 +40,6 @@ class BankUser(User):
 
 
     def request_money(self, user , amount):
-        if amount < 0 or type(amount) == str:
-            print("enter a valid amount")
         print("You are requesting ",amount ,"from",user.name)
         print("Authentication is required ")
         pincode = input("Enter Your PIN: ")
