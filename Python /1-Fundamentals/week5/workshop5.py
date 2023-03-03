@@ -26,7 +26,7 @@ def guess_random_number(tries, start, stop):
     print("The number the program to guess is:", targetnumber)
     for x in range(start, stop):
         if x == targetnumber:
-            print("Found it ")
+            print("Found it ...")
             return 
         elif x > targetnumber:
             print("The program is guessing ......", x )
