@@ -1,6 +1,6 @@
-def test():
-    
-    quiz = {
+import random
+
+quiz = {
         "What is the largest country in Africa by land area?": "Algeria",
         "What is the largest country in Africa by population?": "Nigeria",
         "What is the capital of Egypt?": "Cairo",
@@ -36,20 +36,43 @@ def test():
         "What is the name of the national park in Tanzania that is known for the Great Migration of wildebeest and zebras?": "Serengeti National Park",
         "What is the name of the African country that recently launched its first satellite into space, with the aim of improving weather forecasting and disaster management?": "Kenya",
     }
-    import random 
 
-    health = 5 
-
+""" health = 5 
+def logic():
+    global health
     for question  in quiz:
         print(question)
-        answer = input("Answer: ")
-        if answer == quiz[question]:
+        answer = input("Answer: ") 
+    
+        if  answer.capitalize() == quiz[question].capitalize():
             print("your great ")
             health += 1
         else:
             print("wrong")
+            print("the correct answer is ",quiz[question])
             health -= 1
         if health == 0:
             print("you lose try again ")
             break
-    
+     """
+
+def logic():
+    health = 5
+    while health != 0:
+        random_el = random.choice(list(quiz.keys()))
+        print(random_el)
+        response = input("Answer: ")
+        if response.upper() == quiz[random_el].upper():
+            print("Correct")
+            health += 1
+            print("you have ", health , "lives left ")
+        else:
+            print("Wrong")
+            print("the correct answer is ", quiz[random_el])
+            health -= 1 
+            print("You have ",health, " lives left ")
+
+        if health == 10:
+            print("you win ")
+            break 
+    print("you lose  try again ")
