@@ -123,3 +123,28 @@ ALTER TABLE products
 ADD CONSTRAINT fk_products_suppliers 
 FOREIGN KEY (supplier_id) 
 REFERENCES suppliers (id);
+
+ALTER TABLE orders_products
+ADD CONSTRAINT fk_orders_products_orders
+FOREIGN KEY (order_id) 
+REFERENCES orders (id);
+
+ALTER TABLE orders_products
+ADD CONSTRAINT fk_orders_products_products
+FOREIGN KEY (product_id) 
+REFERENCES products (id);
+
+ALTER TABLE employees_territories
+ADD CONSTRAINT fk_employees_territories_employees
+FOREIGN KEY (employee_id) 
+REFERENCES employees (id);
+
+ALTER TABLE employees_territories
+ADD CONSTRAINT fk_employees_territories_territories
+FOREIGN KEY (territory_id) 
+REFERENCES territories (id);
+
+ALTER TABLE offices
+ADD CONSTRAINT fk_offices_territories
+FOREIGN KEY (territory_id) 
+REFERENCES territories (id);
