@@ -145,9 +145,11 @@ ORDER BY customer_id;
 -- was created by the WITH query).
 
 WITH shippers_per_customer AS (
-    -- Delete this line and replace it with your first SELECT query to create the CTE.
+   SELECT COUNT(DISTINCT ship_via) AS shipper_count
+   GROUP BY customer_id
 ) 
--- Delete this line and replace it with your second SELECT query using the CTE.
+SELECT AVG(shipper_count)
+From shippers_per_customer;
 
 
 
@@ -174,8 +176,8 @@ WITH shippers_per_customer AS (
 
 SELECT p.product_name, c.category_name 
 FROM products p 
-
-
+JOIN categories c
+ON p.category_id=c.category_id
 
 -- 3.2
 -- HR wants to do a staff audit across the regions.
@@ -210,7 +212,7 @@ FROM products p
 SELECT DISTINCT r.region_description, t.territory_description, e.last_name, e.first_name
 FROM employees e
 JOIN employees_territories et ON e.employee_id = et.employee_id
-
+JOIN territories t ON et.territory_id
 
 
 -- 3.3
@@ -238,6 +240,7 @@ JOIN employees_territories et ON e.employee_id = et.employee_id
 
 SELECT s.state_name, s.state_abbr, c.company_name
 FROM us_states s
+JOIN
 
 
 
@@ -266,8 +269,12 @@ FROM us_states s
 -- from a subquery that selects the territory_id from the employee_territories table. 
 
 -- Finally, take the final result set and order by territory_id.
-
-
+SELECT t.territory_description,r.region_description from territories t
+JOIN regions r
+ON t.region_id = r.region_id
+WHERE t.territory_id NOT IN (SELECT territory_id from employees_territories)
+ORDER BY t.territory_id
+;
 
 -- 3.5
 -- Management needs a list of all suppliers' and customers' contact information 
@@ -278,7 +285,9 @@ FROM us_states s
 --
 -- Hint: While there are other ways, this is a good chance to use the UNION
 -- operator, as demonstrated in the lesson SQL Set Operations.
-
+SELECT company_name,address, city, region, postal_code,country  FROM suppliers
+UNION
+SELECT company_name,address, city, region, postal_code,country  FROM customers
 
 
 -- BONUS (optional)
@@ -307,3 +316,4 @@ FROM us_states s
 --
 -- Finally, order by the SUM of the quantity of the order_details table, 
 -- in descending order.
+SELECT company_name, SUM(ORD) FROM customers
