@@ -2,7 +2,7 @@ import psycopg2
 
 conn = psycopg2.connect(
     """
-    dbname=week3 user=postgress host=localhost port=5432
+    dbname=week3 user=postgres host=localhost port=5432
     """
 )
 conn.set_session(autocommit=True)
@@ -28,3 +28,25 @@ cur.execute(
     )
     """
 )
+
+cur.execute(
+    """
+    INSERT INTO veggies VALUES
+    (1, 'carrot', 'orange'),
+    (2, 'onion', 'yellow'),
+    (3, 'zucchini', 'green'),
+    (4, 'squash', 'yellow'),
+    (5, 'pepper', 'red'),
+    (6, 'onion', 'red')
+    """
+)
+
+cur.execute(
+    """
+    SELECT * FROM veggies 
+    """
+)
+
+records = cur.fetchall()
+
+print(records)
