@@ -49,4 +49,24 @@ cur.execute(
 
 records = cur.fetchall()
 
-print(records)
+#print(records)
+cur.execute(
+    """
+    SELECT color,name FROM veggies
+    """
+)
+
+veggie_records = cur.fetchall()
+for v in veggie_records:
+    print(v[0],v[1])
+
+cur.execute(
+    """
+    SELECT color,name FROM veggies ORDER BY name, color
+    """
+)
+
+veggie_records = cur.fetchall()
+for i, v in enumerate(veggie_records):
+    print(str(i+1) + ".", v[0].capitalize(),v[1].capitalize())
+    
