@@ -9,18 +9,21 @@ class User(db.Model):
     username = db.Column(db.String(128), unique=True, nullable=False)
     password = db.Column(db.String(238),nullable=False)
 
-#creating the tweet table 
-class Tweet(db.Model):
-    __tablename__ = 'tweets'
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    content = db.Column(db.String(280), nullable=False)
-    created_at = db.Column(
-        db.DateTime,
-        default=datetime.datetime.utcnow,
-        nullable=False
-    )
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'),nullable=False)
 
+
+    def __init__(self,username:str,password:str):
+        self.username=username
+        self.password=password
+    
+
+
+    def serialize(self):
+        return {
+            'id':self.id,
+            'username':self.password
+        }
+
+ 
 #creating a like reletionship between user and tweet(many to many)
 
 likes_table = db.Table(
@@ -36,17 +39,45 @@ likes_table = db.Table(
     primary_key=True
     ),
     db.Column(
-    'created_at',db.Integer,
+    'created_at',db.DateTime,
     default=datetime.datetime.utcnow,
     nullable=False
     )
 )
 
+#creating the tweet table 
+class Tweet(db.Model):
+    __tablename__ = 'tweets'
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    content = db.Column(db.String(280), nullable=False)
+    created_at = db.Column(
+        db.DateTime,
+        default=datetime.datetime.utcnow,
+        nullable=False
+    )
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'),nullable=False)
+    likes = db.relationship(
+        'User', secondary=likes_table,
+        lazy= 'subquery' ,
+        backref = db.backref('liked_tweets',lazy=True)
+)
+
+
+    def __init__(self,content:str,user_id:int):
+        self.content = content 
+        self.user_id = user_id
+
+    def serialize(self):
+        return {
+            'id': self.id,
+            'content':self.content,
+            'created_at': self.created_at.isoformat(),
+            'user_id': self.user_id 
+        }
+
+
+
 #back references 
 tweets = db.relationship('Tweet', backref='user',cascade="all,delete")
 
-liking_users = db.relationship(
-    'user', secondary = likes_table,
-    lazy= 'subquery' ,
-    backref = db.backref('liked_tweets',lazy=True)
-)
+
