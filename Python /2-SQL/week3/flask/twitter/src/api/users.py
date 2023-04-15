@@ -78,3 +78,11 @@ def update(id:int):
         return jsonify(u.serialize())
     except:
         return jsonify(False)
+    
+@bp.route('/<int:id>/liking_tweets', methods=['GET'])
+def liking_tweets(id: int):
+    u = User.query.get_or_404(id)
+    result = []
+    for u in u.liking_tweets:
+        result.append(u.serialize())
+    return jsonify(result)
